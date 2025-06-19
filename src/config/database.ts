@@ -7,7 +7,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 export const AppDataSource = new DataSource({
-    type: "mysql",
+    type: "mssql",
     host: process.env.DB_HOST,
     port: parseInt(process.env.DB_PORT || "3306"),
     username: process.env.DB_USERNAME,
@@ -18,4 +18,5 @@ export const AppDataSource = new DataSource({
     entities: [User],
     migrations: [],
     subscribers: [],
+    // options: { encrypt: false }
 });
