@@ -1,0 +1,33 @@
+# Node
+node_modules/
+dist/
+.env
+.env.*
+
+# Logs
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# TypeScript
+*.tsbuildinfo
+
+# VSCode
+.vscode/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Others
+*.log
+*.sqlite
+*.sqlite3
+
+# Build output
+portal-cautivo-backend/node_modules/
+portal-cautivo-backend/dist/
+portal-cautivo-backend/.env
+portal-cautivo-backend/.env.*
+portal-cautivo-backend/*.log
+portal-cautivo-backend/*.tsbuildinfo
