@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  db:
+    image: mcr.microsoft.com/mssql/server:2022-latest
+    container_name: sqlserver
+    environment:
+      - ACCEPT_EULA=Y
+      - SA_PASSWORD=YourStrong!Passw0rd
+      - MSSQL_PID=Express
+    ports:
+      - "1433:1433"
+    healthcheck:
+      test: ["CMD", "/opt/mssql-tools/bin/sqlcmd", "-S", "localhost", "-U", "sa", "-P", "YourStrong!Passw0rd", "-Q", "SELECT 1"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  app:
+    build: .
+    container_name: portal-cautivo
+    depends_on:
+      db:
+        condition: service_healthy
+    environment:
+      - DB_HOST=db
+      - DB_PORT=1433
+      - DB_USERNAME=sa
+      - DB_PASSWORD=YourStrong!Passw0rd
+      - DB_DATABASE=PortalCautivo
+      - DB_TRUST_SERVER_CERTIFICATE=true
+      - OMADA_BASE_URL=${OMADA_BASE_URL}
+      - OMADA_CONTROLLER_ID=${OMADA_CONTROLLER_ID}
+      - OMADA_USER=${OMADA_USER}
+      - OMADA_PASSWORD=${OMADA_PASSWORD}
+    ports:
+      - "3000:3000"
+    restart: unless-stopped
