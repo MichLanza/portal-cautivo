@@ -1,7 +1,7 @@
 // src/config/database.ts
 import "reflect-metadata"; // Necesario para TypeORM
 import { DataSource } from "typeorm";
-import { User } from "../entities/User";
+import { Lead } from "../entities/Lead";
 import dotenv from "dotenv";
 
 dotenv.config();
@@ -9,13 +9,13 @@ dotenv.config();
 export const AppDataSource = new DataSource({
     type: "mssql",
     host: process.env.DB_HOST,
-    // port: parseInt(process.env.DB_PORT || "1433"), 
+    port: parseInt(process.env.DB_PORT || "1433"), 
     username: process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_DATABASE,
     synchronize: true,
     logging: false,
-    entities: [User],
+    entities: [Lead],
     migrations: [],
     subscribers: [],
      options: {

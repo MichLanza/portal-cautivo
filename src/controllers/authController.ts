@@ -1,6 +1,6 @@
 // src/controllers/authController.ts
 import { AppDataSource } from "../config/database";
-import { User } from "../entities/User";
+import { Lead } from "../entities/Lead";
 import { Request, Response } from "express";
 import { OmadaHotspotApi } from "../services/OmadaHotspotService";
 import dotenv from "dotenv";
@@ -15,7 +15,7 @@ export const registerUser = async (req: Request, res: Response) => {
     return res.status(400).send("Nombre y correo electrónico son requeridos.");
   }
 
-  // const userRepository = AppDataSource.getRepository(User);
+   const leadRepository = AppDataSource.getRepository(Lead);
 
   try {
 
@@ -24,15 +24,12 @@ export const registerUser = async (req: Request, res: Response) => {
     //     // Podrías actualizar la fecha de registro o simplemente proceder a la autenticación
     // } else {
     //     // Crear y guardar nuevo usuario
-    //     user = new User();
-    //     user.name = name;
-    //     user.email = email;
-    //     await userRepository.save(user);
-    //     console.log(`Usuario ${email} registrado exitosamente.`);
+       const lead = new Lead();
+        lead.name = name;
+        lead.email = email;
+        await leadRepository.save(lead);
     // }
     console.log(`Usuario ${email} registrado exitosamente.`);
-
-    console.log(process.env.OMADA_BASE_URL);
 
     const omadaApi = new OmadaHotspotApi(
       process.env.OMADA_BASE_URL || "",

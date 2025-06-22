@@ -19,6 +19,21 @@ src/
   routes/               # Definición de rutas
   services/OmadaHotspotApi.ts # Lógica de integración con Omada
 ```
+## Variables de entorno
+
+```
+DB_HOST=
+DB_PORT=
+DB_USERNAME=
+DB_PASSWORD=
+DB_DATABASE=
+DB_TYPE=
+DB_TRUST_SERVER_CERTIFICATE=
+OMADA_BASE_URL=
+OMADA_CONTROLLER_ID=
+OMADA_USER=
+OMADA_PASSWORD=
+```
 
 ## Instalación
 1. Clona el repositorio
