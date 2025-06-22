@@ -9,14 +9,17 @@ dotenv.config();
 export const AppDataSource = new DataSource({
     type: "mssql",
     host: process.env.DB_HOST,
-    port: parseInt(process.env.DB_PORT || "3306"),
+    // port: parseInt(process.env.DB_PORT || "1433"), 
     username: process.env.DB_USERNAME,
     password: process.env.DB_PASSWORD,
     database: process.env.DB_DATABASE,
-    synchronize: true, // ¡En producción, esto debería ser `false` y usar migraciones!
+    synchronize: true,
     logging: false,
     entities: [User],
     migrations: [],
     subscribers: [],
-    // options: { encrypt: false }
+     options: {
+        trustServerCertificate: process.env.DB_TRUST_SERVER_CERTIFICATE === "true",
+        encrypt: false
+    }
 });

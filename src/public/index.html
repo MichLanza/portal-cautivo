@@ -19,12 +19,29 @@
         <form action="/register" method="POST">
             <input type="text" name="name" placeholder="Tu Nombre" required>
             <input type="email" name="email" placeholder="Tu Correo Electrónico" required>
+            <input type="hidden" name="mac" id="mac">
+            <input type="hidden" name="ip" id="ip">
+            <input type="hidden" name="apmac" id="apmac">
+            <input type="hidden" name="target" id="target">
+            <input type="hidden" name="ssidName" id="ssidName">
+            <input type="hidden" name="site" id="site">
+            <input type="hidden" name="radioId" id="radioId">
             <button type="submit">Conectarse</button>
         </form>
         <p id="message" style="color: green; margin-top: 15px;"></p>
     </div>
-    <script>
-
-    </script>
+ <script>
+    const params = new URLSearchParams(window.location.search);
+    console.log(params);
+    
+    document.getElementById('mac').value = params.get('clientMac') || '';
+    document.getElementById('ip').value = params.get('clientIp') || '';
+    document.getElementById('apmac').value = params.get('apMac') || '';
+    document.getElementById('target').value = params.get('redirectUrl') || ''
+    document.getElementById('ssidName').value = params.get('ssidName') || ''
+    document.getElementById('site').value = params.get('site') || ''
+    document.getElementById('radioId').value = params.get('radioId') || ''
+    ;
+</script>
 </body>
 </html>
