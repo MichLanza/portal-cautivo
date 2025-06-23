@@ -25,7 +25,6 @@ export class OmadaHotspotApi {
         const match = setCookie.join('; ').match(/TPOMADA_SESSIONID=([^;]+)/);
         if (match) {
           sessionId = match[1];
-          console.log("TPOMADA_SESSIONID:", sessionId);
         }
       }
       if (response.data.errorCode === 0) {
@@ -77,10 +76,8 @@ export class OmadaHotspotApi {
         },
         //  withCredentials: true,
       });
-      // console.log(response.data);
 
       const data = response.data as { errorCode: number; [key: string]: any };
-      console.log(data);
 
       if (data.errorCode === 0) {
         return true;

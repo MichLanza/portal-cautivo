@@ -3,7 +3,7 @@ import { registerUser } from "../controllers/authController";
 
 const router = Router();
 
-router.post("/register", (req: Request, res: Response) => {
+router.post("/", (req: Request, res: Response) => {
   registerUser(req, res);
 });
 

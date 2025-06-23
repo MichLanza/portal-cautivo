@@ -15,7 +15,7 @@ app.use(bodyParser.json());
 app.use(express.static(path.join(__dirname, "public")));
 
 // Rutas de la API
-app.use("/", authRoutes); // Tus rutas de registro
+app.use("/api/register", authRoutes); // Tus rutas de registro
 
 // Redirigir la raíz a tu formulario
 app.get("/", (req, res) => {

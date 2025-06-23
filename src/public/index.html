@@ -5,18 +5,74 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portal Cautivo - Registro</title>
     <style>
-        body { font-family: Arial, sans-serif; display: flex; justify-content: center; align-items: center; height: 100vh; background-color: #f4f4f4; }
-        .container { background: white; padding: 30px; border-radius: 8px; box-shadow: 0 2px 10px rgba(0,0,0,0.1); text-align: center; }
-        input[type="text"], input[type="email"] { width: 100%; padding: 10px; margin: 10px 0; border: 1px solid #ddd; border-radius: 4px; box-sizing: border-box; }
-        button { background-color: #007bff; color: white; padding: 10px 15px; border: none; border-radius: 4px; cursor: pointer; font-size: 16px; }
-        button:hover { background-color: #0056b3; }
+        body { 
+            font-family: Arial, sans-serif; 
+            display: flex; 
+            justify-content: center; 
+            align-items: center; 
+            height: 100vh; 
+            background-color: #e6e6e6; 
+        }
+        .container { 
+            background: #fff; 
+            padding: 30px; 
+            border-radius: 8px; 
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1); 
+            text-align: center; 
+            width: 364px;
+        }
+        .logo-placeholder {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+        }
+        input[type="text"], input[type="email"] { 
+            width: 100%; 
+            padding: 10px; 
+            margin: 10px 0; 
+            border: 1px solid #ff8300; 
+            border-radius: 4px; 
+            box-sizing: border-box; 
+            background: #fff;
+            color: #000;
+        }
+        input[type="text"]:focus, input[type="email"]:focus {
+            outline: none;
+            border-color: #000;
+        }
+        button { 
+            background-color: #000; 
+            color: #fff; 
+            padding: 10px 15px; 
+            border: none; 
+            border-radius: 4px; 
+            cursor: pointer; 
+            font-size: 16px; 
+            width: 100%;
+            margin-top: 10px;
+            transition: background 0.2s;
+        }
+       
+        h2, p {
+            color: #000;
+        }
     </style>
 </head>
 <body>
     <div class="container">
-        <h2>Bienvenido a nuestra red Wi-Fi</h2>
+        <div class="logo-placeholder">
+           <!-- LOGO -->
+            <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 180.119 139.794">
+                <g transform="translate(-13.59 -66.639)" paint-order="fill markers stroke"><path fill="#d0d0d0"
+                     d="M13.591 66.639H193.71v139.794H13.591z"/><path d="m118.507 133.514-34.249 34.249-15.968-15.968-41.938 41.937H178.726z" 
+                     opacity=".675" fill="#fff"/><circle cx="58.217" cy="108.555" r="11.773" opacity=".675" fill="#fff"/>
+                     <path fill="none" d="M26.111 77.634h152.614v116.099H26.111z"/></g>
+            </svg>
+        </div>
+        <h2>Bienvenido a nuestra red <span style="color: #ff8300;">Wi-Fi</span></h2>
         <p>Por favor, regístrate para obtener acceso.</p>
-        <form action="/register" method="POST">
+        <form action="/api/register" method="POST">
             <input type="text" name="name" placeholder="Tu Nombre" required>
             <input type="email" name="email" placeholder="Tu Correo Electrónico" required>
             <input type="hidden" name="mac" id="mac">
@@ -28,12 +84,10 @@
             <input type="hidden" name="radioId" id="radioId">
             <button type="submit">Conectarse</button>
         </form>
-        <p id="message" style="color: green; margin-top: 15px;"></p>
+        <p id="message" style="color: #ff8300; margin-top: 15px;"></p>
     </div>
  <script>
     const params = new URLSearchParams(window.location.search);
-    console.log(params);
-    
     document.getElementById('mac').value = params.get('clientMac') || '';
     document.getElementById('ip').value = params.get('clientIp') || '';
     document.getElementById('apmac').value = params.get('apMac') || '';

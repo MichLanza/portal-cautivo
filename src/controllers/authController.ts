@@ -65,9 +65,6 @@ export const registerUser = async (req: Request, res: Response) => {
     } else {
       res.status(500).send("<h1>Error</h1>");
     }
-
-    console.log(successRedirectUrl);
-
    
   } catch (error: any) {
     // if (error.code === "ER_DUP_ENTRY") {
